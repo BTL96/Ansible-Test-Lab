@@ -1,0 +1,13 @@
+---
+- name: Windows Updates installieren
+  hosts: windows
+  gather_facts: false
+
+  tasks:
+    - name: Installiere alle verfügbaren Updates
+      ansible.windows.win_updates:
+        category_names:
+          - SecurityUpdates
+          - CriticalUpdates
+          - UpdateRollups
+        reboot: true
