@@ -1,0 +1,14 @@
+---
+- name: Windows Updates prüfen
+  hosts: windows
+  gather_facts: false
+
+  tasks:
+    - name: Suche nach verfügbaren Updates
+      ansible.windows.win_updates:
+        state: searched
+      register: update_result
+
+    - name: Update-Ergebnis anzeigen
+      ansible.builtin.debug:
+        var: update_result.found_update_count
